@@ -1,0 +1,123 @@
+{
+    "name": "davidsolorzano20/migrate",
+    "description": "Project template for Drupal 8 projects with composer",
+    "type": "project",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "",
+            "role": ""
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    ],
+    "require": {
+        "composer/installers": "~1",
+        "cweagans/composer-patches": "~1.0",
+        "drupal-composer/drupal-scaffold": "~2",
+        "drupal/admin_toolbar": "^1.0.0@beta",
+        "drupal/auto_entitylabel": "^2.0@beta",
+        "drupal/bootstrap": "~3",
+        "drupal/config_installer": "~1",
+        "drupal/console": "~1.0",
+        "drupal/core": "~8",
+        "drupal/csv_serialization": "^1.0",
+        "drupal/devel": "~1",
+        "drupal/entity_reference_revisions": "~1",
+        "drupal/facets": "1.x-dev",
+        "drupal/field_group": "~1",
+        "drupal/field_permissions": "^1.0@beta",
+        "drupal/honeypot": "~1",
+        "drupal/inline_entity_form": "~1",
+        "drupal/masquerade": "~2",
+        "drupal/migrate_plus": "~4",
+        "drupal/migrate_source_csv": "~2",
+        "drupal/migrate_tools": "~4",
+        "drupal/migrate_upgrade": "~3",
+        "drupal/paragraphs": "~1",
+        "drupal/pathauto": "~1",
+        "drupal/r4032login": "1.x-dev",
+        "drupal/recaptcha": "~2",
+        "drupal/recreate_block_content": "~1",
+        "drupal/search_api": "^1.1",
+        "drupal/twig_tweak": "~1",
+        "drupal/views_accordion": "~1",
+        "drupal/views_field_view": "~1",
+        "drupal/views_jump_menu": "~1",
+        "drupal/views_send": "^1.0",
+        "drush/drush": "~8",
+        "geerlingguy/drupal-vm": "^4.4",
+        "phpoffice/phppresentation": "^0.8.0",
+        "phpoffice/phpspreadsheet": "dev-master"
+    },
+    "require-dev": {
+        "behat/mink": "^1.7",
+        "behat/mink-goutte-driver": "~1.2",
+        "drupal/coder": "8.2.x",
+        "jcalderonzumba/gastonjs": "~1.0.2",
+        "jcalderonzumba/mink-phantomjs-driver": "~0.3.1",
+        "phpunit/phpunit": "~4.8",
+        "symfony/css-selector": "~2.8"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "autoload": {
+        "classmap": [
+            "scripts/composer/ScriptHandler.php"
+        ]
+    },
+    "scripts": {
+        "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+        "pre-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "pre-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
+        ],
+        "post-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "post-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ]
+    },
+    "extra": {
+        "installer-paths": {
+            "web/core": [
+                "type:drupal-core"
+            ],
+            "web/modules/contrib/{$name}": [
+                "type:drupal-module"
+            ],
+            "web/profiles/contrib/{$name}": [
+                "type:drupal-profile"
+            ],
+            "web/themes/contrib/{$name}": [
+                "type:drupal-theme"
+            ],
+            "drush/contrib/{$name}": [
+                "type:drupal-drush"
+            ]
+        },
+        "patches": {
+            "drupal/core": {
+                "Categorize migrations according to their type": "https://www.drupal.org/files/issues/categorize_migrations-2711099-49.patch",
+                "Warning: Illegal offset type in ContentEntityStorageBase->getFromPersistentCache()": "https://www.drupal.org/files/issues/2876229-4.patch",
+                "Reuse option in FileCopy migrate process plugin not work with remote files": "https://www.drupal.org/files/issues/reuse_option_with_remote_file-2877839-2.patch",
+                "File formatter render absolute url to file": "https://www.drupal.org/files/issues/2811043-45.patch"
+            }
+        }
+    },
+    "replace": {
+        "drupal/drupal": "*"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    }
+}
